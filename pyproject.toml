@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "ext-provider"
+version = "0.1.0"
+description = ""
+authors = ["pokonakov (VTB70171591) <pokonakov@vtb.ru>"]
+readme = "README.md"
+packages = [{include = "ext_provider"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.95.2"
+uvicorn = "^0.22.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
