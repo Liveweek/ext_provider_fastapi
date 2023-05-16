@@ -7,7 +7,7 @@ import ext_provider.models as m
 app = FastAPI()
 
 
-@app.get('/resource/{resource_cd}')
+@app.get('/resource/{resource_cd}', response_model=m.ExternalResource)
 def get_resource(resource_cd: str):
     return m.ExternalResource(
         resource_cd="some.resource.cd",
