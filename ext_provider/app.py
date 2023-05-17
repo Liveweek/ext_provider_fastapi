@@ -1,14 +1,16 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, APIRouter
 import uvicorn
 
 
 import ext_provider.models as m
 
+ext_provider = APIRouter(
+    prefix="/api_v1",
+    tags=["External Resource Provider"]
+)
 
-app = FastAPI()
 
-
-@app.get('/resource/{resource_cd}', response_model=m.ExternalResource)
+@ext_provider.get('/resource/{resource_cd}', response_model=m.ExternalResource)
 def get_resource(resource_cd: str):
     return m.ExternalResource(
         resource_cd="some.resource.cd",
@@ -31,17 +33,21 @@ def get_resource(resource_cd: str):
     )
     
 
-@app.post('/resource')
+@ext_provider.post('/resource')
 def create_resource(resource: m.ExternalResource):
     print(type(resource.dataset))
     return resource
 
 
-@app.get('/resource/{resource_cd}/state')
+@ext_provider.get('/resource/{resource_cd}/state')
 def get_resource_state(resource_cd: str):
     ...
     
-    
+
+
+app = FastAPI()
+
+app.include_router(ext_provider)
     
 def start():
     """Launched with `poetry run start` at root level"""
