@@ -11,6 +11,9 @@ python = "^3.10"
 fastapi = "^0.95.2"
 uvicorn = "^0.22.0"
 
+[tool.poetry.scripts]
+api = "ext_provider.app:start"
+
 
 [build-system]
 requires = ["poetry-core"]

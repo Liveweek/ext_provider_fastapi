@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+import uvicorn
 
 
 import ext_provider.models as m
@@ -39,3 +40,9 @@ def create_resource(resource: m.ExternalResource):
 @app.get('/resource/{resource_cd}/state')
 def get_resource_state(resource_cd: str):
     ...
+    
+    
+    
+def start():
+    """Launched with `poetry run start` at root level"""
+    uvicorn.run("ext_provider.app:app", host="0.0.0.0", port=8000, reload=True)
